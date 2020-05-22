@@ -1,0 +1,38 @@
+<button type="button" class="toggle-btn" (click)="slideShown = true">Filters</button>
+<div class="filters" [class.side-shown]="slideShown">
+  <button type="button" class="close-side-btn" (click)="slideShown = false">x</button>
+  <h5>Filter by categories</h5>
+  <form *ngIf="showFilters">
+    <div class="category-filter filter-wrapper" *ngFor='let item of categories'  (change)='inputChange($event, item, "category")'>
+      <label class="fake-checkbox">
+        <input type="checkbox" checked>
+        <span class="square"><span class="fill"></span></span>
+        <span class="label"> {{ item.name }}</span>
+        <span></span>
+      </label>
+    </div>
+  </form>
+  <h5>Filter by price</h5>
+  <form *ngIf="showFilters">
+    <div class="custom-filter filter-wrapper" *ngFor='let filter of priceFilters'>
+        <label class="fake-checkbox">
+          <input type="radio" name="price" [checked]='filter.checked' (click)='inputChange($event, filter, "price")'>
+          <span class="circle"><span class="fill"></span></span>
+          <span class="label">{{filter.name}}</span>
+          <span></span>
+        </label>
+    </div>
+  </form>
+  <h5>Filter custom</h5>
+  <form *ngIf="showFilters">
+    <div class="custom-filter filter-wrapper" *ngFor='let filter of customFilters'>
+        <label class="fake-checkbox">
+          <input type="radio" name="custom" [checked]='filter.checked' (click)='inputChange($event, filter, "custom")'>
+          <span class="circle"><span class="fill"></span></span>
+          <span class="label">{{filter.name}}</span>
+          <span></span>
+        </label>
+    </div>
+  </form>
+</div>
+
